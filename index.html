@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+  <title>
+    InforCovid19 - Página Inicial
+  </title>
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <!-- Nucleo Icons -->
+  <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link href="assets/css/black-dashboard.css?v=1.0.0" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="assets/demo/demo.css" rel="stylesheet" />
+</head>
+
+<body class="" onload="covidBrasil(), covidTodosEstados(), covidChina()">
+  <div class="wrapper">
+    <div class="sidebar">
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="active ">
+            <a href="index.html">
+              <i class="tim-icons icon-atom"></i>
+              <p>DADOS - COVID19</p>
+            </a>
+          </li>
+          <li>
+            <a href="consultas.html">
+              <i class="tim-icons icon-zoom-split"></i>
+              <p>CONSULTAR DADOS</p>
+            </a>
+          </li>
+          <li>
+            <a href="https://beacons.page/luidev" target="_blank">
+              <i class="tim-icons icon-pencil"></i>
+              <p>DESENVOLVEDOR</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <div class="navbar-toggle d-inline">
+              <button type="button" class="navbar-toggler">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </button>
+            </div>
+            <a class="navbar-brand" href="javascript:void(0)">DADOS COVID19</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+            <span class="navbar-toggler-bar navbar-kebab"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navigation">
+            <ul class="navbar-nav ml-auto">
+              <li class="search-bar input-group"><!--
+                <button class="btn btn-link" id="search-button" data-toggle="modal" data-target="#searchModal"><i class="tim-icons icon-zoom-split" ></i>
+                  <span class="d-lg-none d-md-block">Search</span>
+                </button>-->
+              </li>
+              <li class="dropdown nav-item">
+                <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                  <!--<div class="notification d-none d-lg-block d-xl-block"></div>
+                  <i class="tim-icons icon-sound-wave"></i>
+                  <p class="d-lg-none">
+                    Notifications
+                  </p>-->
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
+                  <li class="nav-link"><a href="#" class="nav-item dropdown-item">Mike John responded to your email</a></li>
+                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">You have 5 more tasks</a></li>
+                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Your friend Michael is in town</a></li>
+                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Another notification</a></li>
+                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Another one</a></li>
+                </ul>
+              </li><!--
+              <li class="dropdown nav-item">
+                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                  <div class="photo">
+                    <img src="assets/img/anime3.png" alt="Profile Photo">
+                  </div>
+                  <b class="caret d-none d-lg-block d-xl-block"></b>
+                  <p class="d-lg-none">
+                    Log out
+                  </p>
+                </a>
+                <ul class="dropdown-menu dropdown-navbar">
+                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Profile</a></li>
+                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Settings</a></li>
+                  <li class="dropdown-divider"></li>
+                  <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Log out</a></li>
+                </ul>
+              </li>-->
+              <li class="separator d-lg-none"></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="modal modal-search fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="SEARCH">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <i class="tim-icons icon-simple-remove"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Navbar -->
+      <div class="content">
+        <div class="row">
+          <div class="col-lg-6 col-md-12">
+            <div class="card card-tasks">
+              <div class="card-header ">
+                <h4 class="card-title">Casos por Estados - Brasil 📍</h4>
+              </div>
+              <div class="card-body ">
+                <div class="table-full-width table-responsive">
+                  <table class="table tablesorter " id="">
+                    <thead class=" text-primary">
+                      <tr>
+                        <th>
+                          Estados
+                        </th>
+                        <th>
+                          Casos
+                        </th>
+                        <th>
+                          Mortes
+                        </th>
+                        <th>
+                          Suspeitos
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <tr>
+                        <td class="tdcss">
+                            <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/SP.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                            <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado1">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases1">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes1">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp1">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/MG.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado2">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases2">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes2">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp2">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/PR.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado3">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases3">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes3">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp3">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/RS.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado4">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases4">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes4">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp4">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/SC.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado5">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases5">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes5">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp5">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/BA.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado6">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases6">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes6">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp6">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/RJ.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado7">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases7">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes7">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp7">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/CE.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado8">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases8">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes8">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp8">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/GO.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado9">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases9">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes9">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp9">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/PA.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado10">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases10">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes10">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp10">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/ES.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado11">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases11">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes11">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp11">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/AM.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado12">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases12">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes12">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp12">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/PE.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado13">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases13">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes13">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp13">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/DF.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado14">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases14">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes14">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp14">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/MT.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado15">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases15">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes15">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp15">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/PB.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado16">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases16">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes16">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp16">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/MA.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado17">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases17">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes17">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp17">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/MS.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado18">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases18">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes18">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp18">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/PI.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado19">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases19">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes19">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp19">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/RN.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado20">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases20">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes20">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp20">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/RO.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado21">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases21">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes21">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp21">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/SE.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado22">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases22">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes22">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp22">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/AL.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado23">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases23">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes23">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp23">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/TO.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado24">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases24">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes24">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp24">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/AP.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado25">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases25">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes25">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp25">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/RR.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado26">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases26">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes26">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp26">
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <img src="https://devarthurribeiro.github.io/covid19-brazil-api/static/flags/AC.png" alt="uf flag" class="jsx-4089769319" width="20px">
+                          <input type="text" class="form-control ddapi cssEstados" disabled="true" id="estado27">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="cases27">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="mortes27">
+                        </td>
+                        <td>
+                          <input type="text" class="form-control ddapi" disabled="true" id="susp27">
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div> 
+
+          <div class="col-lg-6 col-md-12">
+            <div class="card ">
+              <div class="card-header">
+                <h4 class="card-title">Status Brazil 🇧🇷</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table tablesorter " id="">
+                    <thead class=" text-primary">
+                      <tr>
+                        <th>
+                          Confirmados
+                        </th>
+                        <th>
+                          Casos
+                        </th>
+                        <th>
+                          Recuperados
+                        </th>
+                        <th>
+                          Mortes
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <tr>
+                        <td>
+                         <input type="text" class="form-control ddapi" disabled="true" id="confirmados">
+                        </td>
+                        <td>
+                         <input type="text" class="form-control ddapi" disabled="true" id="casos">
+                        </td>
+                        <td>
+                         <input type="text" class="form-control ddapi" disabled="true" id="recuperados">
+                        </td>
+                        <td>
+                         <input type="text" class="form-control ddapi" disabled="true" id="mortes">
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="card ">
+              <div class="card-header">
+                <h4 class="card-title">Status China 🇨🇳</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table tablesorter " id="">
+                    <thead class=" text-primary">
+                      <tr>
+                        <th>
+                          Confirmados
+                        </th>
+                        <th>
+                          Casos
+                        </th>
+                        <th>
+                          Recuperados
+                        </th>
+                        <th>
+                          Mortes
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <tr>
+                        <td>
+                         <input type="text" class="form-control ddapi" disabled="true" id="confirmados1">
+                        </td>
+                        <td>
+                         <input type="text" class="form-control ddapi" disabled="true" id="casos1">
+                        </td>
+                        <td>
+                         <input type="text" class="form-control ddapi" disabled="true" id="recuperados1">
+                        </td>
+                        <td>
+                         <input type="text" class="form-control ddapi" disabled="true" id="morteschina">
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  <!--   Core JS Files   -->
+  <script src="assets/js/core/jquery.min.js"></script>
+  <script src="assets/js/core/popper.min.js"></script>
+  <script src="assets/js/core/bootstrap.min.js"></script>
+  <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+
+  <!-- Chart JS -->
+  <script src="assets/js/plugins/chartjs.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="assets/js/plugins/bootstrap-notify.js"></script>
+  <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="assets/js/black-dashboard.min.js?v=1.0.0"></script><!-- Black Dashboard DEMO methods, don't include it in your project! -->
+  <script src="assets/demo/demo.js"></script>
+  <script>
+    $(document).ready(function() {
+      $().ready(function() {
+        $sidebar = $('.sidebar');
+        $navbar = $('.navbar');
+        $main_panel = $('.main-panel');
+
+        $full_page = $('.full-page');
+
+        $sidebar_responsive = $('body > .navbar-collapse');
+        sidebar_mini_active = true;
+        white_color = false;
+
+        window_width = $(window).width();
+
+        fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+
+
+
+        $('.fixed-plugin a').click(function(event) {
+          if ($(this).hasClass('switch-trigger')) {
+            if (event.stopPropagation) {
+              event.stopPropagation();
+            } else if (window.event) {
+              window.event.cancelBubble = true;
+            }
+          }
+        });
+
+        $('.fixed-plugin .background-color span').click(function() {
+          $(this).siblings().removeClass('active');
+          $(this).addClass('active');
+
+          var new_color = $(this).data('color');
+
+          if ($sidebar.length != 0) {
+            $sidebar.attr('data', new_color);
+          }
+
+          if ($main_panel.length != 0) {
+            $main_panel.attr('data', new_color);
+          }
+
+          if ($full_page.length != 0) {
+            $full_page.attr('filter-color', new_color);
+          }
+
+          if ($sidebar_responsive.length != 0) {
+            $sidebar_responsive.attr('data', new_color);
+          }
+        });
+
+        $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function() {
+          var $btn = $(this);
+
+          if (sidebar_mini_active == true) {
+            $('body').removeClass('sidebar-mini');
+            sidebar_mini_active = false;
+            blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
+          } else {
+            $('body').addClass('sidebar-mini');
+            sidebar_mini_active = true;
+            blackDashboard.showSidebarMessage('Sidebar mini activated...');
+          }
+
+          // we simulate the window Resize so the charts will get updated in realtime.
+          var simulateWindowResize = setInterval(function() {
+            window.dispatchEvent(new Event('resize'));
+          }, 180);
+
+          // we stop the simulation of Window Resize after the animations are completed
+          setTimeout(function() {
+            clearInterval(simulateWindowResize);
+          }, 1000);
+        });
+
+        $('.switch-change-color input').on("switchChange.bootstrapSwitch", function() {
+          var $btn = $(this);
+
+          if (white_color == true) {
+
+            $('body').addClass('change-background');
+            setTimeout(function() {
+              $('body').removeClass('change-background');
+              $('body').removeClass('white-content');
+            }, 900);
+            white_color = false;
+          } else {
+
+            $('body').addClass('change-background');
+            setTimeout(function() {
+              $('body').removeClass('change-background');
+              $('body').addClass('white-content');
+            }, 900);
+
+            white_color = true;
+          }
+
+
+        });
+
+        $('.light-badge').click(function() {
+          $('body').addClass('white-content');
+        });
+
+        $('.dark-badge').click(function() {
+          $('body').removeClass('white-content');
+        });
+      });
+    });
+  </script>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS &&
+      TrackJS.install({
+        token: "ee6fab19c5a04ac1a32a645abde4613a",
+        application: "black-dashboard-free"
+      });
+  </script>
+
+  <script src="assets/js/pages/covid.js"></script>
+
+</body>
+
+</html>
