@@ -1,4 +1,4 @@
 # InforCovid19
-Projeto de estudo desenvolvido durante um dos picos de casos da Covid19 com o objetivo de transparência de dados da Covid19 no Brasil e no mundo.
+Projeto de estudo desenvolvido durante um dos altos picos da pandemia do Covid19. Criado com o objetivo de facilitar a transparência de dados sobre a doença.
  
-- API: https://covid19-brazil-api.now.sh/api/report/v1
+- API utilizada: https://covid19-brazil-api.now.sh/api/report/v1
