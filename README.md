@@ -3,7 +3,7 @@
  
 ## API utilizada:
 
-#### - `Distancep`
+#### - `Covid19 - Brasil`
 - Documentação: https://covid19-brazil-api-docs.vercel.app
 - Descrição: Retorna dados dos casos da Covid19 no Brasil e no mundo
 - Tipos de retorno: json
